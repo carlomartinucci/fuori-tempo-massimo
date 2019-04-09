@@ -38,12 +38,16 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
-              {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
+              Mi chiamo <strong>{author}</strong>, sono un matematico, lavoro
+              come sviluppatore di applicazioni web (Ruby on Rails, React) a
+              Padova in <a href={`https://www.uqido.com/it/`}>Uqido</a> (di cui
+              curo il <a href="https://tech.uqido.com/">blog tecnico</a>). Ho
+              una moglie e una figlia, sono socio{" "}
+              <a href="https://www.mensaitalia.it/cose-il-mensa/">Mensa</a>,
+              ogni tanto bazzico{" "}
+              <a href={`https://facebook.com/${social.facebook}`}>facebook</a> e{" "}
+              <a href={`https://twitter.com/${social.twitter}`}>twitter</a>, più
+              spesso <a href={`https://github.com/${social.github}`}>github</a>.
             </p>
           </div>
         )
@@ -66,6 +70,8 @@ const bioQuery = graphql`
         author
         social {
           twitter
+          facebook
+          github
         }
       }
     }

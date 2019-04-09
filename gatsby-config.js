@@ -1,11 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: `Fuori tempo massimo`,
+    author: `Carlo Martinucci`,
+    description: `Argomenti di attualità quando non sono più attuali.`,
+    siteUrl: `https://fuori-tempo-massimo.netlify.com/`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `melkon88`,
+      facebook: `carlo.mrtn`,
+      github: `carlomartinucci`,
     },
   },
   plugins: [
@@ -50,15 +52,15 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-138083792-1`,
       },
     },
     `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Fuori tempo massimo`,
+        short_name: `FuoriTempo`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
