@@ -18,7 +18,7 @@ function Bio() {
       render={data => {
         const { author, social } = data.site.siteMetadata
         return (
-          <div
+          <aside
             style={{
               display: `flex`,
               marginBottom: rhythm(2.5),
@@ -49,7 +49,7 @@ function Bio() {
               <a href={`https://twitter.com/${social.twitter}`}>twitter</a>, più
               spesso <a href={`https://github.com/${social.github}`}>github</a>.
             </p>
-          </div>
+          </aside>
         )
       }}
     />

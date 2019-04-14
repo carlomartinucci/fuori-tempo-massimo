@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Fuori tempo massimo`,
     author: `Carlo Martinucci`,
-    description: `Argomenti di attualità quando non sono più attuali.`,
+    description: `Argomenti di attualità che non sono più attuali.`,
     siteUrl: `https://fuori-tempo-massimo.netlify.com/`,
     social: {
       twitter: `melkon88`,
