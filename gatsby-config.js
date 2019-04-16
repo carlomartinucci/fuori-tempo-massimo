@@ -3,7 +3,7 @@ module.exports = {
     title: `Fuori tempo massimo`,
     author: `Carlo Martinucci`,
     description: `Argomenti di attualità che non sono più attuali.`,
-    siteUrl: `https://fuori-tempo-massimo.netlify.com/`,
+    siteUrl: `https://www.fuori-tempo-massimo.it`,
     social: {
       twitter: `melkon88`,
       facebook: `carlo.mrtn`,
@@ -56,6 +56,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("sass"),
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

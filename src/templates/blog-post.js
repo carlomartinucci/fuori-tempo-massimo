@@ -4,13 +4,18 @@ import { Link, graphql } from "gatsby"
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Share from "../components/share"
+
 import { rhythm, scale } from "../utils/typography"
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    const slug = post.fields.slug
+    const siteUrl = this.props.data.site.siteMetadata.siteUrl
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = this.props.data.site.siteMetadata.description
+    const twitter = this.props.data.site.siteMetadata.social.twitter
     const { previous, next } = this.props.pageContext
 
     return (
@@ -35,6 +40,13 @@ class BlogPostTemplate extends React.Component {
           {post.frontmatter.date}
         </p>
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
+
+        <Share
+          url={`${siteUrl}${slug}`}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          twitter={twitter}
+        />
         <hr
           style={{
             marginBottom: rhythm(1),
@@ -77,9 +89,13 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
+        siteUrl
         title
         description
         author
+        social {
+          twitter
+        }
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -90,6 +106,9 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+      }
+      fields {
+        slug
       }
     }
   }
