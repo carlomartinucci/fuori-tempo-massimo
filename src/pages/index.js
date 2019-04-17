@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { formatPostDate, formatReadingTime } from "../utils/helpers"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -37,12 +38,26 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>
+                {formatPostDate(node.frontmatter.date, "it")}
+                {` • ${formatReadingTime(node.timeToRead)}`}
+              </small>
               <p
+                style={{ marginBottom: rhythm(1 / 4) }}
                 dangerouslySetInnerHTML={{
                   __html: node.frontmatter.description || node.excerpt,
                 }}
               />
+              <Link
+                style={{
+                  boxShadow: `none`,
+                  marginBottom: rhythm(1),
+                  display: "inline-block",
+                }}
+                to={node.fields.slug}
+              >
+                Leggi tutto...
+              </Link>
             </div>
           )
         })}
@@ -68,6 +83,7 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          timeToRead
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
