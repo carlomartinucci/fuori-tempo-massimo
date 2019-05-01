@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Share from "../components/share"
+import Disqus from "../components/disqus"
 
 import { formatPostDate, formatReadingTime } from "../utils/helpers"
 import { rhythm, scale } from "../utils/typography"
@@ -80,6 +81,8 @@ class BlogPostTemplate extends React.Component {
             )}
           </li>
         </ul>
+
+        <Disqus.Comments />
       </Layout>
     )
   }
