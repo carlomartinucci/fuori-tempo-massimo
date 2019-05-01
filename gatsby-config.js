@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Fuori tempo massimo`,
     author: `Carlo Martinucci`,
-    description: `Argomenti di attualità che non sono più attuali.`,
+    description: `Argomenti di attualità quando non sono più attuali.`,
     siteUrl: `https://www.fuori-tempo-massimo.it`,
     social: {
       twitter: `melkon88`,
@@ -55,7 +55,59 @@ module.exports = {
         trackingId: `UA-138083792-1`,
       },
     },
-    `gatsby-plugin-feed`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.frontmatter.description,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      html
+                      fields { slug }
+                      frontmatter {
+                        title
+                        date
+                        description
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Fuori Tempo Massimo RSS Feed",
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-sass`,
       options: {
@@ -66,7 +118,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Fuori tempo massimo`,
-        short_name: `FuoriTempo`,
+        short_name: `FuoriTempoMassimo`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,
